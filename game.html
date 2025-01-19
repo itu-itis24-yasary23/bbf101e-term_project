@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Word Prediction Game</title>
+  <meta charset="UTF-8" />
+  <title>Word Prediction Game - SYNTH</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,28 +16,18 @@
 
       <div id="score-lives">
         <p>Score: <span id="score">0</span></p>
-        <!-- Display hearts for lives -->
-        <p>Lives: 
-          <span id="lives">
-            <!-- We will place heart icons dynamically in JS or just as text. E.g. ♥♥♥ -->
-            ♥♥♥
-          </span>
-        </p>
+        <p>Lives: <span id="lives">♥♥♥</span></p>
       </div>
 
-      <!-- The letter/card placeholders -->
       <div id="word-cards">
-        <!-- 5 placeholders for 'ADIEU', or however many letters your chosen word has. 
-             You can also place images (like 5 .svg placeholders) or simply blank text fields.
-             The game logic will reveal them as the user guesses correctly. -->
-        <div class="card" data-letter="A"></div>
-        <div class="card" data-letter="D"></div>
-        <div class="card" data-letter="I"></div>
-        <div class="card" data-letter="E"></div>
-        <div class="card" data-letter="U"></div>
+        <!-- 5 placeholders for 'SYNTH' -->
+        <div class="card" data-letter="S"></div>
+        <div class="card" data-letter="Y"></div>
+        <div class="card" data-letter="N"></div>
+        <div class="card" data-letter="T"></div>
+        <div class="card" data-letter="H"></div>
       </div>
 
-      <!-- User input for predictions -->
       <div id="user-input">
         <label for="prediction">Prediction (letter or word):</label>
         <input type="text" id="prediction" maxlength="5" />
@@ -49,10 +39,9 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 [Your Name].</p>
+    <p>&copy; 2025 yağız yaşar.</p>
   </footer>
 
-  <!-- Link to JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
