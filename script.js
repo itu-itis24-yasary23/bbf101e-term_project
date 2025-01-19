@@ -1,4 +1,3 @@
-
 let targetWord = "SYNTH";  
 let revealedLetters = [];  
 let score = 0;
