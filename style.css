@@ -1,4 +1,4 @@
-/* General resets and styling */
+/* Reset & Global */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -25,10 +25,6 @@ section {
   margin-bottom: 1rem;
 }
 
-#about-me img {
-  border-radius: 50%;
-}
-
 /* Buttons */
 .btn, button {
   cursor: pointer;
@@ -44,7 +40,14 @@ section {
   background-color: #0056b3;
 }
 
-/* Game container */
+/* About Me Photo */
+#about-me img {
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+/* Game Container */
 #game-container {
   max-width: 600px;
   margin: 0 auto;
@@ -56,14 +59,16 @@ section {
 
 #score-lives {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
 }
 
-/* Word cards layout */
+/* Word Cards */
 #word-cards {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .card {
@@ -78,7 +83,7 @@ section {
   font-weight: bold;
 }
 
-/* If you want to reveal the letter or show an image, you could add a class like .revealed or manipulate the DOM. */
+/* A class for revealed letters */
 .card.revealed {
   background-color: #ace;
 }
