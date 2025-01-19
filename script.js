@@ -23,17 +23,14 @@ function initGame() {
   score = 0;
   lives = 3;
   gameOver = false;
-  // Make an array with same length as targetWord, all false initially
   revealedLetters = Array(targetWord.length).fill(false);
 
   updateScoreAndLives();
 
-  // Hide images in each card
+  // Hide letters on the cards
   cardElements.forEach((card) => {
-    const letterImage = card.querySelector("img");
-    if (letterImage) {
-      letterImage.classList.add("hidden-img");  // ensure they are hidden
-    }
+    card.textContent = "";
+    card.classList.remove("revealed");
   });
 
   predictionInput.value = "";
@@ -42,36 +39,35 @@ function initGame() {
 function handleSubmit() {
   if (gameOver) return;
 
-  let guess = predictionInput.value.trim();  // as typed
+  // Grab raw user input (any case) and trim whitespace
+  let guess = predictionInput.value.trim();
+  // Clear the input field
   predictionInput.value = "";
 
-  if (!guess) return; // do nothing if empty
+  // If user didn't type anything, do nothing
+  if (!guess) return;
 
-  // Convert guess to uppercase for comparison
+  // Convert guess to uppercase so we can compare with targetWord in uppercase
   let uppercaseGuess = guess.toUpperCase();
 
+  // Decide if it's a single-letter guess or full-word guess
   if (uppercaseGuess.length === 1) {
-    // Single-letter guess
     checkLetterGuess(uppercaseGuess);
   } else {
-    // Full-word guess
     checkWordGuess(uppercaseGuess);
   }
 }
 
 function checkLetterGuess(letter) {
   if (targetWord.includes(letter)) {
+    // Reveal all occurrences of that letter
     let letterFound = false;
     for (let i = 0; i < targetWord.length; i++) {
       if (targetWord[i] === letter && !revealedLetters[i]) {
         revealedLetters[i] = true;
+        cardElements[i].textContent = letter;
+        cardElements[i].classList.add("revealed");
         letterFound = true;
-
-        // Reveal the <img> in that card
-        const imgTag = cardElements[i].querySelector("img");
-        if (imgTag) {
-          imgTag.classList.remove("hidden-img");
-        }
       }
     }
     if (letterFound) {
@@ -91,28 +87,23 @@ function checkLetterGuess(letter) {
 
 function checkWordGuess(wordGuess) {
   if (wordGuess === targetWord) {
-    // Reveal all letters
+    // Correct full-word guess => reveal all letters
     for (let i = 0; i < targetWord.length; i++) {
-      if (!revealedLetters[i]) {
-        revealedLetters[i] = true;
-
-        // Reveal that <img> as well
-        const imgTag = cardElements[i].querySelector("img");
-        if (imgTag) {
-          imgTag.classList.remove("hidden-img");
-        }
-      }
+      revealedLetters[i] = true;
+      cardElements[i].textContent = targetWord[i];
+      cardElements[i].classList.add("revealed");
     }
     score += 100;
     updateScoreAndLives();
     endGame(true);
   } else {
-    // Incorrect word => lose immediately
+    // Incorrect word => immediate loss
     endGame(false);
   }
 }
 
 function checkWinCondition() {
+  // If all letters are revealed => user wins
   let allRevealed = revealedLetters.every(val => val === true);
   if (allRevealed) {
     endGame(true);
@@ -135,7 +126,7 @@ function resetGame() {
 function updateScoreAndLives() {
   scoreDisplay.textContent = score;
   
-  // Display hearts
+  // Display hearts for lives
   let hearts = "";
   for (let i = 0; i < lives; i++) {
     hearts += "♥";
