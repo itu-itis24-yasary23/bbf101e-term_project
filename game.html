@@ -5,18 +5,19 @@
   <title>Word Prediction Game - SYNTH</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Inline CSS just for the buttons (you can move these to style.css if you prefer) */
+    /* Inline CSS just for demonstration; you can move this to style.css if preferred */
+
     #user-input {
       display: flex;
       flex-direction: column; /* Stack elements vertically */
       align-items: center;    /* Center them horizontally */
-      margin-top: 1rem;       /* Add some spacing above this section */
+      margin-top: 1rem;       /* Spacing above the user-input section */
     }
 
-    /* Style the buttons individually */
+    /* Style the buttons */
     #submit-btn {
       background-color: orange;
-      margin-top: 0.5rem; /* space above the button */
+      margin-top: 0.5rem;
     }
     #submit-btn:hover {
       background-color: darkorange;
@@ -25,16 +26,16 @@
     #reset-btn {
       background-color: black;
       color: white;
-      margin-top: 0.5rem; /* space above the button */
+      margin-top: 0.5rem;
     }
     #reset-btn:hover {
       background-color: #333;
     }
 
-    /* Optional: style the label and input so they stack cleanly */
     #prediction {
       margin-top: 0.5rem;
       margin-bottom: 1rem;
+      text-align: center; /* Just in case we want the text itself centered in the box */
     }
   </style>
 </head>
@@ -72,9 +73,9 @@
       </div>
 
       <div id="user-input">
-        <label for="prediction">Prediction (letter or word):</label>
+        <!-- Removed "(letter or word):" -->
+        <label for="prediction">Prediction</label>
         <input type="text" id="prediction" maxlength="5" />
-        <!-- Buttons stacked under the input field -->
         <button id="submit-btn">Submit</button>
         <button id="reset-btn">Reset the Game</button>
       </div>
