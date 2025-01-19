@@ -1,7 +1,6 @@
-// script.js
 
-let targetWord = "SYNTH";  // For last digit = 1
-let revealedLetters = [];  // Track which letters have been guessed
+let targetWord = "SYNTH";  
+let revealedLetters = [];  
 let score = 0;
 let lives = 3;
 let gameOver = false;
@@ -25,7 +24,7 @@ function initGame() {
 
   updateScoreAndLives();
 
-  // Hide all SVG images initially
+  
   cardElements.forEach((card) => {
     const imgTag = card.querySelector("img");
     if (imgTag) {
@@ -42,15 +41,13 @@ function handleSubmit() {
   let guess = predictionInput.value.trim();
   predictionInput.value = "";
 
-  if (!guess) return; // do nothing if empty
+  if (!guess) return; 
 
   let uppercaseGuess = guess.toUpperCase();
 
-  if (uppercaseGuess.length === 1) {
-    // Single-letter guess
+  if (uppercaseGuess.length === 1) { 
     checkLetterGuess(uppercaseGuess);
   } else {
-    // Full-word guess
     checkWordGuess(uppercaseGuess);
   }
 }
@@ -63,7 +60,7 @@ function checkLetterGuess(letter) {
         revealedLetters[i] = true;
         letterFound = true;
 
-        // Reveal the .svg image in that card
+        
         const imgTag = cardElements[i].querySelector("img");
         if (imgTag) {
           imgTag.classList.remove("hidden-img");
@@ -75,8 +72,7 @@ function checkLetterGuess(letter) {
       updateScoreAndLives();
       checkWinCondition();
     }
-  } else {
-    // Wrong letter => lose 1 life
+  } else {   
     lives--;
     updateScoreAndLives();
     if (lives <= 0) {
@@ -87,7 +83,6 @@ function checkLetterGuess(letter) {
 
 function checkWordGuess(wordGuess) {
   if (wordGuess === targetWord) {
-    // Reveal all letters
     for (let i = 0; i < targetWord.length; i++) {
       if (!revealedLetters[i]) {
         revealedLetters[i] = true;
@@ -106,7 +101,6 @@ function checkWordGuess(wordGuess) {
 }
 
 function checkWinCondition() {
-  // If all letters are revealed, user wins
   let allRevealed = revealedLetters.every(val => val === true);
   if (allRevealed) {
     endGame(true);
@@ -129,7 +123,7 @@ function resetGame() {
 function updateScoreAndLives() {
   scoreDisplay.textContent = score;
 
-  // Update hearts display
+
   let hearts = "";
   for (let i = 0; i < lives; i++) {
     hearts += "♥";
