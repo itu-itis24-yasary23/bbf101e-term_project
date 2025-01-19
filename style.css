@@ -1,10 +1,11 @@
-/* Reset & Global */
+/* Basic reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Body style */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -12,58 +13,32 @@ body {
   padding: 1rem;
 }
 
-header, footer {
+header, main {
   text-align: center;
   margin-bottom: 1rem;
 }
 
-h1, h2 {
-  margin-bottom: 0.5rem;
-}
-
-section {
-  margin-bottom: 1rem;
-}
-
-/* Buttons */
-.btn, button {
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  border-radius: 4px;
-  border: none;
-}
-
-.btn:hover, button:hover {
-  background-color: #0056b3;
-}
-
-/* About Me Photo */
-#about-me img {
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto 1rem;
-}
-
-/* Game Container */
+/* Container for the game */
 #game-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
   background-color: #fff;
   border-radius: 8px;
-  text-align: center;
+  padding: 1rem;
 }
 
 #score-lives {
-  margin-bottom: 1rem;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 1rem;
 }
 
-/* Word Cards */
+/* Make hearts red */
+#lives {
+  color: red;
+}
+
+/* Word cards row */
 #word-cards {
   display: flex;
   justify-content: center;
@@ -76,18 +51,55 @@ section {
   height: 80px;
   background-color: #ccc;
   border-radius: 8px;
+
+  /* Center the SVG if you like */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: bold;
 }
 
-/* A class for revealed letters */
-.card.revealed {
-  background-color: #ace;
+/* Hide SVG images initially until guessed */
+.hidden-img {
+  display: none;
 }
 
+/* User input section (stacking elements) */
 #user-input {
+  display: flex;
+  flex-direction: column; /* Stack label, input, and buttons vertically */
+  align-items: center;    /* Center them horizontally */
   margin-top: 1rem;
+}
+
+/* Center the typed text inside the input */
+#prediction {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Buttons */
+#submit-btn {
+  background-color: orange;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#submit-btn:hover {
+  background-color: darkorange;
+}
+
+#reset-btn {
+  background-color: black;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+#reset-btn:hover {
+  background-color: #333;
 }
