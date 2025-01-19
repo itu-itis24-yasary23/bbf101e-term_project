@@ -39,17 +39,22 @@ function initGame() {
 function handleSubmit() {
   if (gameOver) return;
 
-  let guess = predictionInput.value.trim().toUpperCase();
+  // Grab raw user input (any case) and trim whitespace
+  let guess = predictionInput.value.trim();
+  // Clear the input field
   predictionInput.value = "";
 
-  if (!guess) return; // do nothing if empty
+  // If user didn't type anything, do nothing
+  if (!guess) return;
 
-  if (guess.length === 1) {
-    // Single letter guess
-    checkLetterGuess(guess);
+  // Convert guess to uppercase so we can compare with targetWord in uppercase
+  let uppercaseGuess = guess.toUpperCase();
+
+  // Decide if it's a single-letter guess or full-word guess
+  if (uppercaseGuess.length === 1) {
+    checkLetterGuess(uppercaseGuess);
   } else {
-    // Full word guess
-    checkWordGuess(guess);
+    checkWordGuess(uppercaseGuess);
   }
 }
 
