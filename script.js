@@ -4,7 +4,6 @@ let targetWord = "SYNTH";  // For last digit = 1
 let revealedLetters = [];  // Track which letters have been guessed
 let score = 0;
 let lives = 3;
-let maxIncorrectLetters = 3;
 let gameOver = false;
 
 const scoreDisplay = document.getElementById("score");
@@ -22,17 +21,15 @@ function initGame() {
   score = 0;
   lives = 3;
   gameOver = false;
-
-  // Make an array with the same length as targetWord => all false
   revealedLetters = Array(targetWord.length).fill(false);
 
   updateScoreAndLives();
 
-  // Hide all SVG images
+  // Hide all SVG images initially
   cardElements.forEach((card) => {
-    const letterImage = card.querySelector("img");
-    if (letterImage) {
-      letterImage.classList.add("hidden-img");
+    const imgTag = card.querySelector("img");
+    if (imgTag) {
+      imgTag.classList.add("hidden-img");
     }
   });
 
@@ -42,7 +39,7 @@ function initGame() {
 function handleSubmit() {
   if (gameOver) return;
 
-  let guess = predictionInput.value.trim();  // user input as typed
+  let guess = predictionInput.value.trim();
   predictionInput.value = "";
 
   if (!guess) return; // do nothing if empty
@@ -59,7 +56,6 @@ function handleSubmit() {
 }
 
 function checkLetterGuess(letter) {
-  // If letter is in targetWord
   if (targetWord.includes(letter)) {
     let letterFound = false;
     for (let i = 0; i < targetWord.length; i++) {
@@ -67,7 +63,7 @@ function checkLetterGuess(letter) {
         revealedLetters[i] = true;
         letterFound = true;
 
-        // Reveal the <img> for that card
+        // Reveal the .svg image in that card
         const imgTag = cardElements[i].querySelector("img");
         if (imgTag) {
           imgTag.classList.remove("hidden-img");
@@ -105,12 +101,12 @@ function checkWordGuess(wordGuess) {
     updateScoreAndLives();
     endGame(true);
   } else {
-    // Incorrect full word => immediate game over
     endGame(false);
   }
 }
 
 function checkWinCondition() {
+  // If all letters are revealed, user wins
   let allRevealed = revealedLetters.every(val => val === true);
   if (allRevealed) {
     endGame(true);
@@ -120,7 +116,7 @@ function checkWinCondition() {
 function endGame(win) {
   gameOver = true;
   if (win) {
-    alert("Congratulations! You correctly guessed 'SYNTH' and won!");
+    alert("Congratulations! You correctly guessed ‘SYNTH’ and won!");
   } else {
     alert("Game Over! You lost all your lives or guessed the wrong word.");
   }
@@ -133,7 +129,7 @@ function resetGame() {
 function updateScoreAndLives() {
   scoreDisplay.textContent = score;
 
-  // Display hearts (in red)
+  // Update hearts display
   let hearts = "";
   for (let i = 0; i < lives; i++) {
     hearts += "♥";
